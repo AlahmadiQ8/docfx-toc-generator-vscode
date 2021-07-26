@@ -32,7 +32,11 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ### 0.0.1
 
-Initial release of ...
+* Initial release.
+
+### 0.0.2
+
+* Refactoring to support different sorting strategies.
 
 -----------------------------------------------------------------------------------------------------------
 
