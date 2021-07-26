@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import * as fs from 'fs';
+import * as path from 'path';
+import { TitleParser } from './titleParser';
+import { DocFxItem } from './docfx-item';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -23,15 +25,25 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showWarningMessage(`No files found under ${folder.fsPath}`);
 		}
 
+		// TODO: Make separate class instead of array to implement different sorting techniques
+		const docFxItems: Array<DocFxItem> = [];
+
 		for (const file of files) {
-			const t = await vscode.workspace.openTextDocument(file);
-			// vscode.workspace.openTextDocument(file).then(doc => {
-			// 	// vscode.window.showTextDocument(doc, { preview: false });
-			// 	console.log(doc.getText().length);
-			// });
-			console.log(t.getText().length);
+			const doc = await vscode.workspace.openTextDocument(file);
+			const titleParser = new TitleParser(doc);
+			let title = titleParser.extractTitle();
+			if (!title) {
+				vscode.window.showWarningMessage(`No title found in ${file.fsPath}`);
+				title = "INSERT NAME";
+			}
+			docFxItems.push(new DocFxItem(title, file));
 		}
 		console.log("done reading files");
+
+		// TODO: See todo comment above
+		const content = docFxItems.sort((a, b) => b.uri.path.localeCompare(a.uri.path)).map(item => item.toString()).join('\n');
+
+		vscode.workspace.openTextDocument({ language: 'yaml', content }).then(d => vscode.window.showTextDocument(d));
 
 	});
 
