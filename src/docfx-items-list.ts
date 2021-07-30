@@ -1,10 +1,12 @@
+import * as vscode from 'vscode';
 import { filenameComparer } from "./comparers";
 import { DocFxItem } from "./docfx-item";
-import { SortingType } from "./docfx-items-sorting.enum";
+import { SortingType } from "./configurations";
 
 type CompareFn = (a: DocFxItem, b: DocFxItem) => number;
 
-export function docFxItemsListFactory(sortingType: SortingType, asc: boolean): DocFxItemsList {
+export function docFxItemsListFactory(sortingType: SortingType): DocFxItemsList {
+    // vscode.workspace.getConfiguration
     switch (sortingType) {
         case SortingType.fileName:
             return new DocFxItemsList(filenameComparer, asc);

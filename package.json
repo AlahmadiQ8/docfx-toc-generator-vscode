@@ -22,6 +22,16 @@
 				"title": "Generate YAML Toc"
 			}
 		],
+		"configuration": {
+			"title": "DocFxTocGen",
+			"properties": {
+				"docFxToc.orderBy": {
+					"description": "Toc item ordering. Ascending or descending",
+					"enum": ["ascending", "descending"],
+					"default": "ascending"
+				}
+			}
+		},
 		"menus": {
 			"explorer/context": [
 				{
