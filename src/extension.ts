@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import { DocParser } from './docParser';
 import { DocFxItem } from './docfx-item';
 import { docFxItemsListFactory } from './docfx-items-list';
-import { SortingType } from './configurations';
+import { SortingTypeOptions } from './configurations';
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('doxfx-toc-generator.generateYamlToc', async (folder: vscode.Uri) => {
+	let disposable = vscode.commands.registerCommand('docfx-toc-generator.generateYamlToc', async (folder: vscode.Uri) => {
 
 		if (folder instanceof vscode.Uri === false) {
 			vscode.window.showErrorMessage("Invalid command execution context");
@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showWarningMessage(`No files found under ${folder.fsPath}`);
 		}
 
-		const docFxItems = docFxItemsListFactory(SortingType.fileName);
+		const docFxItems = docFxItemsListFactory(SortingTypeOptions.fileName);
 
 		for (const file of files) {
 			const doc = await vscode.workspace.openTextDocument(file);

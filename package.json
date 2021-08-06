@@ -18,7 +18,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "doxfx-toc-generator.generateYamlToc",
+				"command": "docfx-toc-generator.generateYamlToc",
 				"title": "Generate YAML Toc"
 			}
 		],
@@ -35,8 +35,8 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "doxfx-toc-generator.generateYamlToc",
-					"group": "doxfx",
+					"command": "docfx-toc-generator.generateYamlToc",
+					"group": "docfx",
 					"when": "explorerResourceIsFolder == true"
 				}
 			]

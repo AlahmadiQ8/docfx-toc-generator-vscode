@@ -2,7 +2,7 @@
 
 Generate [DocFx](https://dotnet.github.io/docfx/index.html) Toc directly from VS Code. Simply right click on a folder and select "Generate YAML Toc".
 
-![DoxFx Toc Generator for Visual Studio Code Demo](assets/docfx-vscode.gif)
+![DocFx Toc Generator for Visual Studio Code Demo](assets/docfx-vscode.gif)
 
 # Work in Progress
 
