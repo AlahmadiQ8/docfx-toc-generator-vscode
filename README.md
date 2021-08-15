@@ -2,16 +2,20 @@
 
 Generate [DocFx](https://dotnet.github.io/docfx/index.html) Toc directly from VS Code. Simply right click on a folder and select "Generate YAML Toc".
 
-![DoxFx Toc Generator for Visual Studio Code Demo](assets/docfx-vscode.gif)
+![DocFx Toc Generator for Visual Studio Code Demo](assets/docfx-vscode.gif)
 
-# Work in Progress
+## Work in Progress
 
-- Support various sorting options. Currently, it's hardcoded to sort by file name in reverse.
+- Support sorting using .order file from Aure Devops
 - Toc for sub directories recursively.
 
 ## Requirements
 
 The extension is only activated if there is a `docfx.json` file in the active workspace.
+
+## Extension Settings
+
+* `docFxToc.orderBy`: ascending/descending
 
 <!-- ## Extension Settings
 
@@ -24,9 +28,9 @@ This extension contributes the following settings:
 * `myExtension.enable`: enable/disable this extension
 * `myExtension.thing`: set to `blah` to do something -->
 
-## Known Issues
+<!-- ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Calling out known issues can help limit users opening duplicate issues against your extension. -->
 
 ## Release Notes
 
@@ -38,11 +42,6 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 * Refactoring to support different sorting strategies.
 
------------------------------------------------------------------------------------------------------------
+### 0.0.3
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
+* Added support to configure sorting ascending or descending.

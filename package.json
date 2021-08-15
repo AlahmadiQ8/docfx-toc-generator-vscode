@@ -4,7 +4,7 @@
 	"repository": "https://github.com/AlahmadiQ8/docfx-toc-generator-vscode",
 	"displayName": "DocFx Toc Generator",
 	"description": "Generates a Table of Contents (TOC) in YAML format for DocFX. This extension is an implementation of [TocDocFxCreation](https://github.com/Ellerbach/docfx-companion-tools) in Visual Studio Code. ",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
@@ -18,15 +18,28 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "doxfx-toc-generator.generateYamlToc",
+				"command": "docfx-toc-generator.generateYamlToc",
 				"title": "Generate YAML Toc"
 			}
 		],
+		"configuration": {
+			"title": "DocFxTocGen",
+			"properties": {
+				"docFxToc.orderBy": {
+					"description": "Toc item ordering. Ascending or descending",
+					"enum": [
+						"ascending",
+						"descending"
+					],
+					"default": "ascending"
+				}
+			}
+		},
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "doxfx-toc-generator.generateYamlToc",
-					"group": "doxfx",
+					"command": "docfx-toc-generator.generateYamlToc",
+					"group": "docfx",
 					"when": "explorerResourceIsFolder == true"
 				}
 			]

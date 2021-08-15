@@ -16,7 +16,7 @@ const regexForTripleEqualTitle = /^===+\s*$/;
 /**
  * Utility class to parse the title from a markdown document
  */
-export class TitleParser {
+export class DocParser {
     private readonly doc: TextDocument;
     private hasFrontMatter = false;
 
@@ -29,7 +29,7 @@ export class TitleParser {
         const currentLine = 0;
 
         // TODO: code smell, use class for result rather than returning different types
-        let titleorCurrentLineOrUndefined = this.extractTitleFromMetadata(currentLine);
+        let titleorCurrentLineOrUndefined = this.extractItemFromMetadata('title', currentLine);
 
         switch (typeof titleorCurrentLineOrUndefined) {
             case 'string':
@@ -42,20 +42,20 @@ export class TitleParser {
         }
     }
 
-    private extractTitleFromMetadata(currentLine: number): string | number | undefined {
+    public extractItemFromMetadata(item: string, currentLine: number): string | number | undefined {
         if (!this.hasFrontMatter) { return currentLine; }
 
         currentLine++;
         if (currentLine >= this.doc.lineCount) { return undefined; }
 
         let line = this.doc.lineAt(currentLine);
-        while (!line.text.startsWith('---') && !line.text.startsWith('title: ')) {
+        while (!line.text.startsWith('---') && !line.text.startsWith(`${item}: `)) {
             currentLine++;
             if (currentLine >=  this.doc.lineCount) { return undefined; }
             line = this.doc.lineAt(currentLine);
         }
 
-        if (line.text.startsWith('title: ')) {
+        if (line.text.startsWith(`${item}: `)) {
             const title = line.text.substring(7);
             return title;
         }
